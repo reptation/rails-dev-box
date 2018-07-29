@@ -51,7 +51,7 @@ These can be overridden by setting the environment variables `RAILS_DEV_BOX_RAM`
 
 * Bundler
 
-* SQLite3, MySQL, and Postgres
+* SQLite3 and Postgres
 
 * Databases and users needed to run the Active Record test suite
 
@@ -65,6 +65,7 @@ These can be overridden by setting the environment variables `RAILS_DEV_BOX_RAM`
 
 * An ExecJS runtime
 
+* Rails
 ## Recommended Workflow
 
 The recommended workflow is
@@ -73,16 +74,10 @@ The recommended workflow is
 
 * test within the virtual machine.
 
-Just clone your Rails fork into the rails-dev-box directory on the host computer:
-
-    host $ ls
-    bootstrap.sh MIT-LICENSE README.md Vagrantfile
-    host $ git clone git@github.com:<your username>/rails.git
-
-Vagrant mounts that directory as _/vagrant_ within the virtual machine:
+Vagrant mounts this directory as _/vagrant_ within the virtual machine:
 
     vagrant@rails-dev-box:~$ ls /vagrant
-    bootstrap.sh MIT-LICENSE rails README.md Vagrantfile
+    bootstrap.sh MIT-LICENSE README.md Vagrantfile
 
 Install gem dependencies in there:
 
