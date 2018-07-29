@@ -2,7 +2,7 @@
 
 ## Introduction
 
-**Please note this VM is not designed for Rails application development, only Rails core development.**
+**This was forked from the Rails and should provide a Vagrant environment to setup an RoR app. It installs Rails but not MySQL. VM is named correctly in VirtualBox.**
 
 This project automates the setup of a development environment for working on Ruby on Rails itself. Use this virtual machine to work on a pull request with everything ready to hack and run the test suites.
 
