@@ -39,16 +39,17 @@ sudo -u postgres createdb -O vagrant activerecord_unittest2
 
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-install MySQL mysql-server libmysqlclient-dev
-# Set the password in an environment variable to avoid the warning issued if set with `-p`.
-MYSQL_PWD=root mysql -uroot <<SQL
-CREATE USER 'rails'@'localhost';
-CREATE DATABASE activerecord_unittest  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-CREATE DATABASE activerecord_unittest2 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
-GRANT ALL PRIVILEGES ON activerecord_unittest.* to 'rails'@'localhost';
-GRANT ALL PRIVILEGES ON activerecord_unittest2.* to 'rails'@'localhost';
-GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost';
-SQL
+#We probably won't be using MySQL 
+#install MySQL mysql-server libmysqlclient-dev
+## Set the password in an environment variable to avoid the warning issued if set with `-p`.
+#MYSQL_PWD=root mysql -uroot <<SQL
+#CREATE USER '/ails'@'localhost';
+#CREATE DATABASE activerecord_unittest  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+#CREATE DATABASE activerecord_unittest2 DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+#GRANT ALL PRIVILEGES ON activerecord_unittest.* to 'rails'@'localhost';
+#GRANT ALL PRIVILEGES ON activerecord_unittest2.* to 'rails'@'localhost';
+#GRANT ALL PRIVILEGES ON inexistent_activerecord_unittest.* to 'rails'@'localhost';
+#SQL
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'Blade dependencies' libncurses5-dev
@@ -69,5 +70,8 @@ install 'Poppler' poppler-utils
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+
+#install rails
+gem install rails
 
 echo 'all set, rock on!'
