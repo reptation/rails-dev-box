@@ -7,12 +7,12 @@ function install {
     apt-get -y install "$@" >/dev/null 2>&1
 }
 
-echo adding swap file
-fallocate -l 2G /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+#echo adding swap file
+#fallocate -l 2G /swapfile
+#chmod 600 /swapfile
+#mkswap /swapfile
+#swapon /swapfile
+#echo '/swapfile none swap defaults 0 0' >> /etc/fstab
 
 echo updating package information
 apt-get -y update >/dev/null 2>&1
@@ -56,22 +56,27 @@ install 'Blade dependencies' libncurses5-dev
 install 'ExecJS runtime' nodejs
 
 # To generate guides in Kindle format.
-install 'ImageMagick' imagemagick
-echo installing KindleGen
-kindlegen_tarball=kindlegen_linux_2.6_i386_v2_9.tar.gz
-wget -q http://kindlegen.s3.amazonaws.com/$kindlegen_tarball
-tar xzf $kindlegen_tarball kindlegen
-mv kindlegen /usr/local/bin
-rm $kindlegen_tarball
+#install 'ImageMagick' imagemagick
+#echo installing KindleGen
+#kindlegen_tarball=kindlegen_linux_2.6_i386_v2_9.tar.gz
+#wget -q http://kindlegen.s3.amazonaws.com/$kindlegen_tarball
+#tar xzf $kindlegen_tarball kindlegen
+#mv kindlegen /usr/local/bin
+#rm $kindlegen_tarball
 
-install 'MuPDF' mupdf mupdf-tools
-install 'FFmpeg' ffmpeg
-install 'Poppler' poppler-utils
+#install 'MuPDF' mupdf mupdf-tools
+#install 'FFmpeg' ffmpeg
+#install 'Poppler' poppler-utils
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 #install rails
 gem install rails
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
+sudo apt-get update && sudo apt-get install yarn
 
 echo 'all set, rock on!'
